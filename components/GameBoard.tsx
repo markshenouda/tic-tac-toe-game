@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Platform } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 import { ThemedView } from "@/components/ThemedView";
 import Tile from "@/components/Tile";
-import { GameState } from "@/hooks/useTicTacToeEngine";
+import { useThemeColors } from "@/hooks/useThemeColors";
+import { GameState, Player } from "@/hooks/useTicTacToeEngine";
 
 const BOARD_SIZE = 3;
 
@@ -14,12 +14,12 @@ interface GameBoardProps {
 }
 
 export default function GameBoard({ state, makeMove }: GameBoardProps) {
+  const colors = useThemeColors();
   return (
     <ThemedView
       style={styles.container}
-      // TODO: clean this
-      lightColor="#ff9600"
-      darkColor="#cc7800"
+      lightColor={colors.orange}
+      darkColor={colors.orange}
     >
       <ThemedView style={styles.grid}>
         {[...Array(BOARD_SIZE)].map((_, i) => (
@@ -29,14 +29,13 @@ export default function GameBoard({ state, makeMove }: GameBoardProps) {
                 key={j}
                 tileValue={state.board[i][j]}
                 onPress={() => {
-                  console.log(Platform.OS);
                   makeMove(i, j);
                 }}
+                accessibilityLabel={`${state.board[i][j] === Player.Computer ? "Computer" : state.board[i][j] === Player.Human ? "You" : "Empty"}, row ${i + 1}, column ${j + 1}`}
                 disabled={
-                  (state.board[i][j] !== "" ||
-                    state.isLoading ||
-                    Boolean(state.winner)) &&
-                  !Platform.isTV // TODO: add a comment here
+                  state.board[i][j] !== "" ||
+                  state.isLoading ||
+                  Boolean(state.winner)
                 }
               />
             ))}
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     width: "90%",
     maxWidth: 600,
-    maxHeight: 600,
+    maxHeight: Platform.OS === "android" && Platform.isTV ? 300 : 600,
   },
   tile: {
     aspectRatio: 1,

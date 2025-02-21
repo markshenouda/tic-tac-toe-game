@@ -26,7 +26,7 @@ export const Colors: ColorsType = {
     background: "#131f24",
     blue: "#1cb0f6",
     purple: "#ff86d0",
-    orange: "#cc7800",
+    orange: "#a66100",
     orangeTint: "ff9600",
   },
 };

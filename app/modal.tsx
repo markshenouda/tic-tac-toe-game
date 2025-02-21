@@ -1,5 +1,8 @@
+import FontAwesomeIcons from "@expo/vector-icons/FontAwesome";
+import { Audio } from "expo-av";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
+import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import DefaultLayout from "@/components/DefaultLayout";
@@ -11,6 +14,28 @@ import { Player } from "@/hooks/useTicTacToeEngine";
 export default function Modal() {
   const { winner } = useLocalSearchParams();
   const router = useRouter();
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("@/assets/audios/result.wav"),
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    playSound();
+  }, []);
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
   return (
     <DefaultLayout>
       <ThemedView style={styles.container}>
@@ -38,13 +63,17 @@ export default function Modal() {
           onPress={() => {
             router.dismissTo("/");
           }}
+          accessible={true}
+          accessibilityLabel="Restart"
         >
-          <ThemedText type="defaultSemiBold">SHARE</ThemedText>
+          <FontAwesomeIcons name="refresh" size={64} color="white" />
+          <ThemedText type="defaultSemiBold" lightColor="white">
+            Restart
+          </ThemedText>
         </ThemedTouchableOpacity>
-        <ThemedText type="defaultSemiBold">Restart</ThemedText>
-        {/* <ThemedTouchableOpacity onPress={share}>
-          <ThemedText type="defaultSemiBold">SHARE</ThemedText>
-        </ThemedTouchableOpacity> */}
+
+        {/* Spacer */}
+        <ThemedView></ThemedView>
       </ThemedView>
     </DefaultLayout>
   );
@@ -63,12 +92,12 @@ const styles = StyleSheet.create({
   },
   restartButton: {
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 40,
+    width: 150,
+    height: 150,
     backgroundColor: "green",
-  },
-  shareButton: {
-    padding: 8,
-    borderRadius: 8,
-    backgroundColor: "blue",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
   },
 });

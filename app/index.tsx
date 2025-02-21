@@ -29,6 +29,8 @@ export default function HomeScreen() {
           </ThemedText>
           <ThemedView style={styles.optionButtonsContainer}>
             <ThemedTouchableOpacity
+              accessible={true}
+              accessibilityLabel="You"
               onPress={() =>
                 router.push({
                   pathname: "/game",
@@ -53,6 +55,8 @@ export default function HomeScreen() {
                   params: { firstPlayer: Player.Computer },
                 })
               }
+              accessible={true}
+              accessibilityLabel="AI"
               style={[
                 styles.optionButton,
                 themedStyles({ colors }).aiOptionButton,

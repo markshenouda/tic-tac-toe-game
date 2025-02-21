@@ -17,16 +17,18 @@ interface TileProps {
   tileValue: Player;
   onPress: () => void;
   disabled?: boolean;
+  accessibilityLabel: string;
 }
 
-export default function Tile({ tileValue, onPress, disabled }: TileProps) {
+export default function Tile({
+  tileValue,
+  onPress,
+  disabled,
+  accessibilityLabel,
+}: TileProps) {
   const colors = useThemeColors();
   const crossColor = colors.blue;
   const noughtColor = colors.purple;
-  const defaultColor = useThemeColor(
-    { light: "#cc7800", dark: "#ff9600" },
-    "text",
-  );
 
   const tileColor = () => {
     switch (tileValue) {
@@ -35,7 +37,13 @@ export default function Tile({ tileValue, onPress, disabled }: TileProps) {
       case "O":
         return noughtColor;
       default:
-        return defaultColor;
+        return colors.orange;
+    }
+  };
+
+  const handlePress = () => {
+    if (!disabled) {
+      onPress();
     }
   };
 
@@ -47,9 +55,9 @@ export default function Tile({ tileValue, onPress, disabled }: TileProps) {
       activeOpacity={0.8}
       focusable={true}
       role="button"
-      disabled={disabled}
+      onPress={handlePress}
       accessible={true}
-      onPress={onPress}
+      accessibilityLabel={accessibilityLabel}
     >
       {tileValue === "X" ? <Cross /> : null}
       {tileValue === "O" ? <Nought /> : null}

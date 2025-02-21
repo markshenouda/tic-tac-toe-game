@@ -1,4 +1,6 @@
+import { Audio } from "expo-av";
 import * as Haptics from "expo-haptics";
+import { useEffect, useState } from "react";
 import { TouchableOpacity, type TouchableOpacityProps } from "react-native";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
@@ -13,12 +15,31 @@ export function ThemedTouchableOpacity({
   lightColor,
   darkColor,
   onPressIn,
+  onPress,
   ...otherProps
 }: ThemedTouchableOpacityProps) {
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
     "background",
   );
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("@/assets/audios/tap.wav"),
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   return (
     <TouchableOpacity
@@ -30,6 +51,10 @@ export function ThemedTouchableOpacity({
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
         onPressIn?.(event);
+      }}
+      onPress={(event) => {
+        playSound();
+        onPress?.(event);
       }}
     />
   );

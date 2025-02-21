@@ -37,7 +37,11 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/images/splash-icon.png",
+            "backgroundColor": "#131f24"
+          }
         }
       ],
       [
@@ -57,9 +61,20 @@
       ],
       "expo-font"
     ],
-
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": "https://tictactoegame.markcodes.dev"
+      },
+      "eas": {
+        "projectId": "0539dcab-3f04-46a6-88f1-0652772b83b2"
+      }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/0539dcab-3f04-46a6-88f1-0652772b83b2"
     }
   }
 }

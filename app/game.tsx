@@ -6,7 +6,7 @@ import DefaultLayout from "@/components/DefaultLayout";
 import GameBoard from "@/components/GameBoard";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import Tile from "@/components/Tile";
+import { useThemeColors } from "@/hooks/useThemeColors";
 import { Player, useTicTacToe } from "@/hooks/useTicTacToeEngine";
 
 export default function GameScreen() {
@@ -15,10 +15,11 @@ export default function GameScreen() {
   const { state, makeMove } = useTicTacToe(
     firstPlayer?.toString() === Player.Human ? true : false,
   );
+  const colors = useThemeColors();
 
   useEffect(() => {
     if (state.winner) {
-      router.push({ pathname: "/modal", params: { winner: state.winner } });
+      router.replace({ pathname: "/modal", params: { winner: state.winner } });
     }
   }, [state.winner]);
 
@@ -28,16 +29,16 @@ export default function GameScreen() {
         <ThemedText type="subtitle">
           {state.isLoading ? (
             <>
-              <ActivityIndicator size="small" color="white" /> Thinking...
+              <ActivityIndicator size="small" color={colors.text} /> Thinking...
             </>
           ) : (
             "Your turn"
           )}
         </ThemedText>
         <GameBoard state={state} makeMove={makeMove} />
-        <ThemedView>
-          <Tile tileValue="X" onPress={() => console.log("From tile")} />
-        </ThemedView>
+
+        {/* Spacer */}
+        <ThemedView></ThemedView>
       </ThemedView>
     </DefaultLayout>
   );
