@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, Platform, StyleSheet } from "react-native";
 
 import DefaultLayout from "@/components/DefaultLayout";
 import GameBoard from "@/components/GameBoard";
@@ -19,7 +19,15 @@ export default function GameScreen() {
 
   useEffect(() => {
     if (state.winner) {
-      router.replace({ pathname: "/modal", params: { winner: state.winner } });
+      // Navigate to the modal from the TV app is different from the mobile app
+      if (Platform.isTV) {
+        router.replace({
+          pathname: "/modal",
+          params: { winner: state.winner },
+        });
+      } else {
+        router.push({ pathname: "/modal", params: { winner: state.winner } });
+      }
     }
   }, [state.winner]);
 

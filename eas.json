@@ -57,6 +57,10 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "mark.sameh73@gmail.com"
+      }
+    }
   }
 }

@@ -54,7 +54,6 @@ export default function Tile({
       darkColor={tileColor()}
       activeOpacity={0.8}
       focusable={true}
-      role="button"
       onPress={handlePress}
       accessible={true}
       accessibilityLabel={accessibilityLabel}

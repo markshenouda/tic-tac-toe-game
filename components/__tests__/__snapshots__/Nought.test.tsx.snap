@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nought renders correctly 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight="100%"
+  bbWidth="100%"
+  fill="none"
+  focusable={false}
+  height="100%"
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "flex": 0,
+        "height": "100%",
+        "width": "100%",
+      },
+    ]
+  }
+  vbHeight={24}
+  vbWidth={24}
+  width="100%"
+>
+  <RNSVGGroup
+    fill={null}
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGCircle
+      cx="12"
+      cy="12"
+      fill={null}
+      propList={
+        [
+          "fill",
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      r="9"
+      stroke={
+        {
+          "payload": 4294967295,
+          "type": 0,
+        }
+      }
+      strokeWidth="2.5"
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
