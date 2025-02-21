@@ -3,15 +3,14 @@
 Welcome to the Tic Tac Toe Game project! This project is built using React Native and Expo, providing a simple and fun Tic Tac Toe game experience. The project is designed to work on both mobile 📱 and TV 📺 platforms, including iOS, Android, Web, Apple TV (tvOS), and Android TV. Additionally, the project supports Light and Dark themes.
 
 ## Table of Contents
-- [How to use](#installation)
+- [How to use](#how-to-use)
 - [Screen Recordings](#screen-recordings)
 - [Running the Project](#running-the-project)
 - [Project Structure](#project-structure)
 - [Scripts](#scripts)
-- [Contributing](#contributing)
 - [License](#license)
 
-## 🚀 How to use
+## How to use
 
 To get started with this project, follow these steps:
 
@@ -29,23 +28,45 @@ yarn
 
 Here are some screen recordings of the project running on different platforms:
 
-- iOS (iPhone 16 Pro Max - Dark Theme):
-![iOS Dark Theme](./assets/readme/ios-dark-theme.mp4)
-
-- iOS (iPhone 16 Pro Max - Light Theme):
-![iOS Light Theme](./assets/readme/ios-light-theme.mp4)
-
-- Android (Pixel 3a - Dark Theme):
-![Android Dark Theme](./assets/readme/android-dark-theme.mp4)
-
-- Android (Pixel 3a - Light Theme):
-![Android Light Theme](./assets/readme/android-light-theme.mp4)
-
 - tvOS (Apple TV):
-![tvOS](./assets/readme/tvos.mp4)
+
+
+https://github.com/user-attachments/assets/a2d0eb16-bc32-4054-adcb-c5f5490bc522
+
+
 
 - Android TV:
-![Android TV](./assets/readme/android-tv.mp4)
+
+
+https://github.com/user-attachments/assets/1cecdf22-ec50-4e04-b9f2-2fe2c56ce814
+
+- iOS (iPhone 16 Pro Max - Dark Theme):
+
+
+https://github.com/user-attachments/assets/38e14b31-35d6-4ddc-bf90-31b936eb8a4e
+
+
+
+- iOS (iPhone 16 Pro Max - Light Theme):
+
+
+https://github.com/user-attachments/assets/9edb4b67-06d9-4b18-aac9-e55006281d9b
+
+
+
+- Android (Pixel 3a - Dark Theme):
+
+
+https://github.com/user-attachments/assets/620d518d-e31b-46c5-8c86-f513d44832be
+
+
+
+- Android (Pixel 3a - Light Theme):
+
+
+https://github.com/user-attachments/assets/d3cfbc99-aa11-4190-87ac-edfbe97ae1b9
+
+
 
 ## Running the Project
 
