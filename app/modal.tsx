@@ -9,12 +9,14 @@ import DefaultLayout from "@/components/DefaultLayout";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedTouchableOpacity } from "@/components/ThemedTouchableOpacity";
 import { ThemedView } from "@/components/ThemedView";
+import { useThemeColors } from "@/hooks/useThemeColors";
 import { Player } from "@/hooks/useTicTacToeEngine";
 
 export default function Modal() {
   const { winner } = useLocalSearchParams();
   const router = useRouter();
   const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const styles = useThemedStyles();
 
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(
@@ -79,25 +81,28 @@ export default function Modal() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  lottieViewStyle: {
-    width: 200,
-    height: 200,
-    backgroundColor: "transparent",
-  },
-  restartButton: {
-    padding: 8,
-    borderRadius: 40,
-    width: 150,
-    height: 150,
-    backgroundColor: "green",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-  },
-});
+const useThemedStyles = () => {
+  const colors = useThemeColors();
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    lottieViewStyle: {
+      width: 200,
+      height: 200,
+      backgroundColor: "transparent",
+    },
+    restartButton: {
+      padding: 8,
+      borderRadius: 40,
+      width: 150,
+      height: 150,
+      backgroundColor: colors.green,
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+    },
+  });
+};

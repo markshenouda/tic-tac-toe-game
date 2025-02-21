@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 export enum Player {
   Human = "X",
@@ -12,6 +12,7 @@ export type GameState = {
   board: Board;
   isLoading: boolean;
   winner: Player | "Draw" | null;
+  winningLine: number[][] | null;
 };
 
 const emptyBoard = (): Board =>
@@ -19,7 +20,9 @@ const emptyBoard = (): Board =>
     .fill(null)
     .map(() => Array(3).fill(Player.None));
 
-const checkWinner = (board: Board): Player | "Draw" | null => {
+const checkWinner = (
+  board: Board,
+): { winner: Player | "Draw" | null; winningLine: number[][] | null } => {
   const lines = [
     // Rows
     [
@@ -73,11 +76,13 @@ const checkWinner = (board: Board): Player | "Draw" | null => {
       board[a[0]][a[1]] === board[b[0]][b[1]] &&
       board[a[0]][a[1]] === board[c[0]][c[1]]
     ) {
-      return board[a[0]][a[1]];
+      return { winner: board[a[0]][a[1]], winningLine: line };
     }
   }
 
-  return board.flat().includes(Player.None) ? null : "Draw";
+  return board.flat().includes(Player.None)
+    ? { winner: null, winningLine: null }
+    : { winner: "Draw", winningLine: null };
 };
 
 const minimax = (
@@ -85,7 +90,7 @@ const minimax = (
   depth: number,
   isMaximizing: boolean,
 ): number => {
-  const winner = checkWinner(board);
+  const { winner } = checkWinner(board);
   if (winner === Player.Computer) return 10 - depth;
   if (winner === Player.Human) return depth - 10;
   if (winner === "Draw") return 0;
@@ -128,6 +133,7 @@ export const useTicTacToe = (playerFirst: boolean) => {
     board: emptyBoard(),
     isLoading: !playerFirst,
     winner: null,
+    winningLine: null,
   });
 
   const timerRef = useRef<NodeJS.Timeout>();
@@ -138,28 +144,31 @@ export const useTicTacToe = (playerFirst: boolean) => {
     }
 
     return () => clearTimeout(timerRef.current);
-  }, [timerRef, playerFirst]);
+  }, [playerFirst]);
 
-  const makeMove = (row: number, col: number) => {
-    if (
-      state.board[row][col] !== Player.None ||
-      state.isLoading ||
-      state.winner
-    )
-      return;
+  const makeMove = useCallback(
+    (row: number, col: number) => {
+      if (
+        state.board[row][col] !== Player.None ||
+        state.isLoading ||
+        state.winner
+      )
+        return;
 
-    const newBoard = state.board.map((row) => [...row]);
-    newBoard[row][col] = Player.Human;
-    const winner = checkWinner(newBoard);
+      const newBoard = state.board.map((row) => [...row]);
+      newBoard[row][col] = Player.Human;
+      const { winner, winningLine } = checkWinner(newBoard);
 
-    setState({ board: newBoard, isLoading: !winner, winner });
+      setState({ board: newBoard, isLoading: !winner, winner, winningLine });
 
-    if (!winner) {
-      setTimeout(() => makeComputerMove(), 1000);
-    }
-  };
+      if (!winner) {
+        setTimeout(() => makeComputerMove(), 1000);
+      }
+    },
+    [state],
+  );
 
-  const makeComputerMove = () => {
+  const makeComputerMove = useCallback(() => {
     setState((prev) => {
       if (prev.winner) return prev;
 
@@ -168,11 +177,13 @@ export const useTicTacToe = (playerFirst: boolean) => {
 
       const newBoard = prev.board.map((row) => [...row]);
       newBoard[move[0]][move[1]] = Player.Computer;
-      const winner = checkWinner(newBoard);
+      const { winner, winningLine } = checkWinner(newBoard);
 
-      return { board: newBoard, isLoading: false, winner };
+      return { board: newBoard, isLoading: false, winner, winningLine };
     });
-  };
+  }, []);
 
-  return { state, makeMove };
+  const value = useMemo(() => ({ state, makeMove }), [state, makeMove]);
+
+  return value;
 };

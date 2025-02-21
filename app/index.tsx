@@ -12,7 +12,8 @@ import { Player } from "@/hooks/useTicTacToeEngine";
 
 export default function HomeScreen() {
   const router = useRouter();
-  const colors = useThemeColors();
+  const styles = useThemedStyles();
+
   return (
     <DefaultLayout>
       <ThemedView style={styles.container} darkColor="transparent">
@@ -37,10 +38,7 @@ export default function HomeScreen() {
                   params: { firstPlayer: Player.Human },
                 })
               }
-              style={[
-                styles.optionButton,
-                themedStyles({ colors }).userOptionButton,
-              ]}
+              style={[styles.optionButton, styles.userOptionButton]}
             >
               <FontAwesome6Icons name="face-smile" size={64} color="white" />
               <ThemedText type="subtitle" lightColor="white">
@@ -57,10 +55,7 @@ export default function HomeScreen() {
               }
               accessible={true}
               accessibilityLabel="AI"
-              style={[
-                styles.optionButton,
-                themedStyles({ colors }).aiOptionButton,
-              ]}
+              style={[styles.optionButton, styles.aiOptionButton]}
             >
               <FontAwesome6Icons name="robot" size={64} color="white" />
               <ThemedText type="subtitle" lightColor="white">
@@ -75,58 +70,52 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "space-around",
-    height: "100%",
-    width: "100%",
-    gap: 8,
-  },
-  logoContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 6,
-  },
-  optionsContainer: {
-    width: "100%",
-    alignItems: "center",
-  },
-  optionsTitle: {
-    textAlign: "center",
-    marginBottom: 30,
-    alignItems: "center",
-  },
-  optionButtonsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    maxWidth: 400,
-    gap: 20,
-  },
-  optionButton: {
-    alignItems: "center",
-    gap: 20,
-    flex: 1,
-    width: "100%",
-    padding: 40,
-    aspectRatio: 1,
-    borderRadius: 16,
-    justifyContent: "center",
-  },
-  logoImage: {
-    width: 80,
-    height: 80,
-  },
-});
-
-interface ThemedStylesProps {
-  colors: ThemeColorsType;
-}
-
-const themedStyles = ({ colors }: ThemedStylesProps) =>
-  StyleSheet.create({
+const useThemedStyles = () => {
+  const colors = useThemeColors();
+  return StyleSheet.create({
+    container: {
+      alignItems: "center",
+      justifyContent: "space-around",
+      height: "100%",
+      width: "100%",
+      gap: 8,
+    },
+    logoContainer: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: 6,
+    },
+    optionsContainer: {
+      width: "100%",
+      alignItems: "center",
+    },
+    optionsTitle: {
+      textAlign: "center",
+      marginBottom: 30,
+      alignItems: "center",
+    },
+    optionButtonsContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      maxWidth: 400,
+      gap: 20,
+    },
+    optionButton: {
+      alignItems: "center",
+      gap: 20,
+      flex: 1,
+      width: "100%",
+      padding: 40,
+      aspectRatio: 1,
+      borderRadius: 16,
+      justifyContent: "center",
+    },
+    logoImage: {
+      width: 80,
+      height: 80,
+    },
     aiOptionButton: {
       backgroundColor: colors.purple,
     },
@@ -134,3 +123,4 @@ const themedStyles = ({ colors }: ThemedStylesProps) =>
       backgroundColor: colors.blue,
     },
   });
+};

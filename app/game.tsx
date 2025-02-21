@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ActivityIndicator, Platform, StyleSheet } from "react-native";
 
 import DefaultLayout from "@/components/DefaultLayout";
@@ -16,19 +16,24 @@ export default function GameScreen() {
     firstPlayer?.toString() === Player.Human ? true : false,
   );
   const colors = useThemeColors();
+  const timerRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     if (state.winner) {
-      // Navigate to the modal from the TV app is different from the mobile app
-      if (Platform.isTV) {
-        router.replace({
-          pathname: "/modal",
-          params: { winner: state.winner },
-        });
-      } else {
-        router.push({ pathname: "/modal", params: { winner: state.winner } });
-      }
+      timerRef.current = setTimeout(() => {
+        // Navigate to the modal from the TV app is different from the mobile app
+        if (Platform.isTV) {
+          router.replace({
+            pathname: "/modal",
+            params: { winner: state.winner },
+          });
+        } else {
+          router.push({ pathname: "/modal", params: { winner: state.winner } });
+        }
+      }, 1000);
     }
+
+    return () => clearTimeout(timerRef.current);
   }, [state.winner]);
 
   return (

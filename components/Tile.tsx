@@ -9,7 +9,6 @@ import Animated, {
 import Cross from "@/components/Cross";
 import Nought from "@/components/Nought";
 import { ThemedTouchableOpacity } from "@/components/ThemedTouchableOpacity";
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { useThemeColors } from "@/hooks/useThemeColors";
 import { Player } from "@/hooks/useTicTacToeEngine";
 
@@ -18,6 +17,7 @@ interface TileProps {
   onPress: () => void;
   disabled?: boolean;
   accessibilityLabel: string;
+  isWinningTile?: boolean;
 }
 
 export default function Tile({
@@ -25,12 +25,17 @@ export default function Tile({
   onPress,
   disabled,
   accessibilityLabel,
+  isWinningTile,
 }: TileProps) {
   const colors = useThemeColors();
   const crossColor = colors.blue;
   const noughtColor = colors.purple;
 
   const tileColor = () => {
+    if (isWinningTile) {
+      return colors.green;
+    }
+
     switch (tileValue) {
       case "X":
         return crossColor;

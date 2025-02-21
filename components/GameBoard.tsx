@@ -18,8 +18,8 @@ export default function GameBoard({ state, makeMove }: GameBoardProps) {
   return (
     <ThemedView
       style={styles.container}
-      lightColor={colors.orange}
-      darkColor={colors.orange}
+      lightColor={colors.orangeTint}
+      darkColor={colors.orangeTint}
     >
       <ThemedView style={styles.grid}>
         {[...Array(BOARD_SIZE)].map((_, i) => (
@@ -28,6 +28,14 @@ export default function GameBoard({ state, makeMove }: GameBoardProps) {
               <Tile
                 key={j}
                 tileValue={state.board[i][j]}
+                isWinningTile={
+                  state.winningLine
+                    ? state.winningLine.some(
+                        (winningTile) =>
+                          winningTile[0] === i && winningTile[1] === j,
+                      )
+                    : undefined
+                }
                 onPress={() => {
                   makeMove(i, j);
                 }}

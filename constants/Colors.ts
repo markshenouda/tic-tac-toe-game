@@ -5,6 +5,7 @@ export type ThemeColorsType = {
   purple: string;
   orange: string;
   orangeTint: string;
+  green: string;
 };
 
 export type ColorsType = {
@@ -20,13 +21,15 @@ export const Colors: ColorsType = {
     purple: "#cc6ba6",
     orange: "#ff9600",
     orangeTint: "#cc7800",
+    green: "#58cc02",
   },
   dark: {
     text: "#ECEDEE",
     background: "#131f24",
     blue: "#1cb0f6",
     purple: "#ff86d0",
-    orange: "#a66100",
-    orangeTint: "ff9600",
+    orange: "#cc7800",
+    orangeTint: "#ff9600",
+    green: "#58cc02",
   },
 };
