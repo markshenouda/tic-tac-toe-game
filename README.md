@@ -30,34 +30,22 @@ yarn
 Here are some screen recordings of the project running on different platforms:
 
 - iOS (iPhone 16 Pro Max - Dark Theme):
-<video width="320" height="240" controls>
-  <source src="./assets/readme/ios-dark-theme.mp4" type="video/mp4">
-</video>
+![iOS Dark Theme](./assets/readme/ios-dark-theme.mp4)
 
 - iOS (iPhone 16 Pro Max - Light Theme):
-<video width="320" height="240" controls>
-  <source src="./assets/readme/ios-light-theme.mp4" type="video/mp4">
-</video>
+![iOS Light Theme](./assets/readme/ios-light-theme.mp4)
 
 - Android (Pixel 3a - Dark Theme):
-<video width="320" height="240" controls>
-  <source src="./assets/readme/android-dark-theme.mp4" type="video/mp4">
-</video>
+![Android Dark Theme](./assets/readme/android-dark-theme.mp4)
 
 - Android (Pixel 3a - Light Theme):
-<video width="320" height="240" controls>
-  <source src="./assets/readme/android-light-theme.mp4" type="video/mp4">
-</video>
+![Android Light Theme](./assets/readme/android-light-theme.mp4)
 
 - tvOS (Apple TV):
-<video width="320" height="240" controls>
-  <source src="./assets/readme/tvos.mp4" type="video/mp4">
-</video>
+![tvOS](./assets/readme/tvos.mp4)
 
 - Android TV:
-<video width="320" height="240" controls>
-  <source src="./assets/readme/android-tv.mp4" type="video/mp4">
-</video>
+![Android TV](./assets/readme/android-tv.mp4)
 
 ## Running the Project
 
