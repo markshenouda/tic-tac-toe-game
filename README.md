@@ -1,66 +1,121 @@
-# Tic Tac Toe Game
+# Tic Tac Toe Game with React Native and Expo ⚛️🕹️
 
+Welcome to the Tic Tac Toe Game project! This project is built using React Native and Expo, providing a simple and fun Tic Tac Toe game experience. The project is designed to work on both mobile 📱 and TV 📺 platforms, including iOS, Android, Web, Apple TV (tvOS), and Android TV. Additionally, the project supports Light and Dark themes.
 
-## Intro
-
-
-
-
-![Apple TV screen shot](https://github.com/douglowder/examples/assets/6577821/a881466f-a7a0-4c66-b1fc-33235c466997)
-![Android TV screen shot](https://github.com/douglowder/examples/assets/6577821/815c8e01-8275-4cc1-bd57-b9c8bce1fb02)
-
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-This project uses
-
-- the [React Native TV fork](https://github.com/react-native-tvos/react-native-tvos), which supports both phone (Android and iOS) and TV (Android TV and Apple TV) targets
-- the [React Native TV config plugin](https://github.com/react-native-tvos/config-tv/tree/main/packages/config-tv) to allow Expo prebuild to modify the project's native files for TV builds
+## Table of Contents
+- [How to use](#installation)
+- [Screen Recordings](#screen-recordings)
+- [Running the Project](#running-the-project)
+- [Project Structure](#project-structure)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## 🚀 How to use
 
-- `cd` into the project
+To get started with this project, follow these steps:
 
-```sh
+1. Clone the repository:
+```
+git clone https://github.com/markshenouda/tic-tac-toe-game.git
+cd tic-tac-toe-game
+```
+2. Install the dependencies:
+```
 yarn
-yarn prebuild # Executes Expo prebuild with TV modifications
-yarn ios # Build and run for Apple TV
-yarn android # Build for Android TV
 ```
 
-> **_NOTE:_**
-> Setting the environment variable `EXPO_TV=1` enables the `@react-native-tvos/config-tv` plugin to modify the project for TV.
-> This can also be done by setting the parameter `isTV` to true in the `app.json`.
+## Screen Recordings
 
-## Development
+Here are some screen recordings of the project running on different platforms:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- iOS (iPhone 16 Pro Max - Dark Theme):
+<video width="320" height="240" controls>
+  <source src="./assets/readme/ios-dark-theme.mp4" type="video/mp4">
+</video>
 
-This project includes a [demo](./components/EventHandlingDemo.tsx)showing how to use React Native TV APIs to highlight controls as the user navigates the screen with the remote control.
+- iOS (iPhone 16 Pro Max - Light Theme):
+<video width="320" height="240" controls>
+  <source src="./assets/readme/ios-light-theme.mp4" type="video/mp4">
+</video>
 
-## TV specific file extensions
+- Android (Pixel 3a - Dark Theme):
+<video width="320" height="240" controls>
+  <source src="./assets/readme/android-dark-theme.mp4" type="video/mp4">
+</video>
 
-This project includes an [example Metro configuration](./metro.config.js) that allows Metro to resolve application source files with TV-specific code, indicated by specific file extensions (`*.ios.tv.tsx`, `*.android.tv.tsx`, `*.tv.tsx`). The [ExternalLink](./components/ExternalLink.tsx) component makes use of this by having a [separate TV source file](./components/ExternalLink.tv.tsx) that avoids importing packages that don't exist on Apple TV.
+- Android (Pixel 3a - Light Theme):
+<video width="320" height="240" controls>
+  <source src="./assets/readme/android-light-theme.mp4" type="video/mp4">
+</video>
 
-## Get a fresh project
+- tvOS (Apple TV):
+<video width="320" height="240" controls>
+  <source src="./assets/readme/tvos.mp4" type="video/mp4">
+</video>
 
-When you're ready, run:
+- Android TV:
+<video width="320" height="240" controls>
+  <source src="./assets/readme/android-tv.mp4" type="video/mp4">
+</video>
 
-```bash
-npm run reset-project
+## Running the Project
+
+To run the project, use the following command:
+
+- Run the prebuild script:
+```
+yarn prebuild:mobile
+```
+- Start the development preview:
+```
+yarn ios // or
+yarn android // or
+yarn web
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- Or if you want to start the app for TV:
+```
+yarn prebuild:tv // you have to run this command before running the tv app
+yarn tvos // for Apple TV
+yarn android:tv // for Android TV
+```
 
-## Learn more
+This will start the Expo development server. You can then use the Expo Go app on your mobile device or an emulator to view the app.
 
-To learn more about developing your project with Expo, look at the following resources:
+> **Note:** You have to run `yarn prebuild:*` when you switch between mobile and TV apps.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/learn): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Project Structure
 
-## Join the community
+Here is an overview of the project's structure:
 
-Join our community of developers creating universal apps.
+- `app/`: Contains the main application code, including screens and layouts.
+- `assets/`: Contains images, lottie files, fonts, and other static assets.
+- `components/`: Contains reusable UI components.
+- `constants/`: Contains constant values used throughout the app.
+- `hooks/`: Contains custom React hooks.
+- `scripts/`: Contains utility scripts for project maintenance.
+- `android/` and `ios/`: Platform-specific auto generated code for Android and iOS.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Scripts
+
+The project includes several npm scripts for common tasks:
+- `yarn start`: Starts the Expo development server.
+- `yarn prebuild:mobile`: Prebuilds the project for mobile platforms.
+- `yarn prebuild:tv`: Prebuilds the project for TV platforms.
+- `yarn ios`: Starts the iOS development server.
+- `yarn android`: Starts the Android development server.
+- `yarn web`: Starts the web development server.
+- `yarn tvos`: Starts the Apple TV development server.
+- `yarn android:tv`: Starts the Android TV development server.
+- `yarn lint`: Runs ESLint to check for code quality issues.
+- `yarn test`: Runs the test suite.
+- `yarn format`: Formats the code using Prettier.
+- `yarn format:check`: Checks the code formatting using Prettier.
+- `yarn build:web`: Builds the project for web.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.e
+Welcome to the Tic Tac Toe Game project! This project is built using React Native and Expo, providing a simple and fun Tic Tac Toe game experience.
+

@@ -6,7 +6,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
     "android": "EXPO_TV=0 expo run:android --device",
     "android:tv": "EXPO_TV=1 expo run:android --device",
     "ios": "EXPO_TV=0 expo run:ios --device",
