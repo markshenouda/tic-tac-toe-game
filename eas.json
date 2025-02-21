@@ -18,7 +18,8 @@
     "production": {
       "extends": "base",
       "android": {
-        "gradleCommand": ":app:assembleRelease"
+        "gradleCommand": ":app:assembleRelease",
+        "withoutCredentials": false
       },
       "ios": {
         "buildConfiguration": "Release",
