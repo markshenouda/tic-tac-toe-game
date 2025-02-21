@@ -1,4 +1,4 @@
-package com.anonymous.tictactoegame
+package com.markshenouda.TicTacToeThisDot
 
 import android.app.Application
 import android.content.res.Configuration

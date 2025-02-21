@@ -1,4 +1,4 @@
-package com.anonymous.tictactoegame
+package com.markshenouda.TicTacToeThisDot
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

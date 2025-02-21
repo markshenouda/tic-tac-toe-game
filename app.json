@@ -10,14 +10,14 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.tictactoegame"
+      "bundleIdentifier": "com.markshenouda.TicTacToeThisDot"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.tictactoegame"
+      "package": "com.markshenouda.TicTacToeThisDot"
     },
     "web": {
       "bundler": "metro",
@@ -31,7 +31,6 @@
           "origin": "https://tictactoegame.markcodes.dev"
         }
       ],
-      "@react-native-tvos/config-tv",
       [
         "expo-splash-screen",
         {
@@ -40,8 +39,25 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      [
+        "@react-native-tvos/config-tv",
+        {
+          "androidTVBanner": "./assets/tv_icons/icon-400x240.png",
+          "appleTVImages": {
+            "icon": "./assets/tv_icons/icon-1280x768.png",
+            "iconSmall": "./assets/tv_icons/icon-400x240.png",
+            "iconSmall2x": "./assets/tv_icons/icon-800x480.png",
+            "topShelf": "./assets/tv_icons/icon-1920x720.png",
+            "topShelf2x": "./assets/tv_icons/icon-3840x1440.png",
+            "topShelfWide": "./assets/tv_icons/icon-2320x720.png",
+            "topShelfWide2x": "./assets/tv_icons/icon-4640x1440.png"
+          }
+        }
+      ],
+      "expo-font"
     ],
+
     "experiments": {
       "typedRoutes": true
     }

@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>tictactiegame</string>
-          <string>com.anonymous.tictactoegame</string>
+          <string>com.markshenouda.TicTacToeThisDot</string>
         </array>
       </dict>
     </array>
