@@ -2,6 +2,8 @@
 
 Welcome to the Tic Tac Toe Game project! This project is built using React Native and Expo, providing a simple and fun Tic Tac Toe game experience. The project is designed to work on both mobile 📱 and TV 📺 platforms, including iOS, Android, Web, Apple TV (tvOS), and Android TV. Additionally, the project supports Light and Dark themes.
 
+🔗 Here is a live web demo: https://tic-tac-toe-game-expo.vercel.app/
+
 ## Table of Contents
 - [How to use](#how-to-use)
 - [Screen Recordings](#screen-recordings)
