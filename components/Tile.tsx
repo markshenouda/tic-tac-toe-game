@@ -1,10 +1,4 @@
 import { StyleSheet } from "react-native";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
 
 import Cross from "@/components/Cross";
 import Nought from "@/components/Nought";
